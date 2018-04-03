@@ -11,7 +11,11 @@
   [passphrase]
   (apply distinct? (map frequencies passphrase)))
 
+
 (defn num-valid
   "Determines the number of valid passphrases in a line-separated list."
   [validator input]
-  (count (filter validator (map #(str/split % #"\s") (str/split input #"\n")))))
+  (->> (str/split input #"\n")
+       (map #(str/split % #"\s"))
+       (filter validator)
+       (count)))
