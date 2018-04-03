@@ -1,0 +1,38 @@
+(ns adventofcode2017.core
+  (:gen-class)
+  (:require [adventofcode2017.day1 :refer :all]
+            [adventofcode2017.day2 :refer :all]
+            [adventofcode2017.day3 :refer :all]
+            [adventofcode2017.day4 :refer :all]))
+
+
+(defn day-1 []
+  (let [input (butlast (slurp "resources/day1.txt"))]
+    (do
+      (println (str "day 1, part 1: " (inverse-captcha input)))
+      (println (str "day 1, part 2: " (inverse-captcha-2 input))))))
+
+(defn day-2 []
+  (let [input (slurp "resources/day2.txt")]
+    (do
+      (println (str "day 2, part 1: " (checksum input difference)))
+      (println (str "day 2, part 2: " (checksum input even-division))))))
+
+(defn day-3 []
+  (do
+    (println (str "day 3, part 1: " (spiral 361527)))
+    (println (str "day 3, part 2: " (first-larger-than 361527)))))
+
+(defn day-4 []
+  (let [input (slurp "resources/day4.txt")]
+    (do
+      (println (str "day 4, part 1: " (num-valid no-dups? input)))
+      (println (str "day 4, part 2: " (num-valid no-anagrams? input))))))
+
+(defn -main
+  "Runs all days."
+  [& args]
+  (do (day-1)
+    (day-2)
+    (day-3)
+    (day-4)))
