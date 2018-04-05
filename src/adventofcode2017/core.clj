@@ -3,7 +3,8 @@
   (:require [adventofcode2017.day1 :refer :all]
             [adventofcode2017.day2 :refer :all]
             [adventofcode2017.day3 :refer :all]
-            [adventofcode2017.day4 :refer :all]))
+            [adventofcode2017.day4 :refer :all]
+            [adventofcode2017.day5 :refer :all]))
 
 
 (defn day-1 []
@@ -36,9 +37,9 @@
 (defn day-5 []
   (let [input (slurp "resources/day5.txt")]
     (do
-      (println "Day 4: High-Entropy Passphrases")
-      (println (str "part 1: " "asdf"))
-      (println (str "part 2: " "asdf")))))
+      (println "Day 5: A Maze of Twisty Trampolines, All Alike")
+      (println (str "part 1: " (maze-str input inc)))
+      (println (str "part 2: " (maze-str input fancy-offset))))))
 
 (defn -main
   "Runs all days."
@@ -47,4 +48,5 @@
     (day-1)
     (day-2)
     (day-3)
-    (day-4)))
+    (day-4)
+    (day-5)))

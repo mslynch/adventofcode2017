@@ -3,7 +3,7 @@
             [adventofcode2017.day5 :refer :all]))
 
 (def initial-state [0 3 0 1 -3])
-(def states (maze-states initial-state 0))
+(def states (maze-states initial-state 0 inc))
 
 (deftest part-1-a
   (testing "The initial state."
@@ -26,13 +26,9 @@
     (is (= (nth states 4) [2 4 0 1 -2]))))
 
 (deftest part-1-f
-  (testing "The fifth state."
-    (is (= (nth states 5) [2 5 0 1 -2]))))
-
-(deftest part-1-g
-  (testing "Last state is :end."
-    (is (= (nth states 6) :end))))
-
-(deftest part-1-h
   (testing "It takes 5 steps to exit the maze."
-    (is (= (steps-to-exit initial-state) 5))))
+    (is (= (steps-to-exit initial-state inc) 5))))
+
+(deftest part-2
+  (testing "The example in part 2 takes 10 steps."
+    (is (= (steps-to-exit initial-state fancy-offset) 10))))
