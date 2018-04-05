@@ -4,7 +4,8 @@
             [adventofcode2017.day2 :refer :all]
             [adventofcode2017.day3 :refer :all]
             [adventofcode2017.day4 :refer :all]
-            [adventofcode2017.day5 :refer :all]))
+            [adventofcode2017.day5 :refer :all]
+            [adventofcode2017.day6 :refer :all]))
 
 
 (defn day-1 []
@@ -41,6 +42,13 @@
       (println (str "part 1: " (maze-str input inc)))
       (println (str "part 2: " (maze-str input fancy-offset))))))
 
+(defn day-6 []
+  (let [input (slurp "resources/day5.txt")]
+    (do
+      (println "Day 6: Memory Reallocation")
+      (println (str "part 1: " (maze-str input inc)))
+      (println (str "part 2: " (maze-str input fancy-offset))))))
+
 (defn -main
   "Runs all days."
   [& args]
@@ -49,4 +57,5 @@
     (day-2)
     (day-3)
     (day-4)
-    (day-5)))
+    (day-5)
+    (day-6)))

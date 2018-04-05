@@ -6,8 +6,8 @@
   [state position offset-changer]
   (assoc state position (offset-changer (state position))))
 
-
 (defn fancy-offset
+  "Increment if the value is three or more; else decrement."
   [value]
   (if (>= value 3) (dec value) (inc value)))
 
@@ -17,7 +17,7 @@
   (when (< position (count state))
     (lazy-seq (cons state (maze-states
                            (next-state state position offset-changer)
-                           (+ (nth state position) position)
+                           (+ (state position) position)
                            offset-changer)))))
 
 (defn steps-to-exit
