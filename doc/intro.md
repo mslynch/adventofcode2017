@@ -1,3 +1,3 @@
-# Introduction to adventofcode2017
+# Advent of Code 2017
 
-TODO: write [great documentation](http://jacobian.org/writing/what-to-write/)
+My solutions to [Advent of Code 2017](https://adventofcode.com/2017).

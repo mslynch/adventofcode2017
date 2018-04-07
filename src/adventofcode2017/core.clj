@@ -43,11 +43,10 @@
       (println (str "part 2: " (maze-str input fancy-offset))))))
 
 (defn day-6 []
-  (let [input (slurp "resources/day5.txt")]
-    (do
-      (println "Day 6: Memory Reallocation")
-      (println (str "part 1: " (maze-str input inc)))
-      (println (str "part 2: " (maze-str input fancy-offset))))))
+  (do
+    (println "Day 6: Memory Reallocation")
+    (println (str "part 1: " (steps-to-cycle [10 3 15 10 5 15 5 15 9 2 5 8 5 2 3 6])))
+    (println (str "part 2: " (cycle-size [10 3 15 10 5 15 5 15 9 2 5 8 5 2 3 6])))))
 
 (defn -main
   "Runs all days."
