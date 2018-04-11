@@ -8,7 +8,6 @@
             [adventofcode2017.day6 :refer :all]
             [adventofcode2017.day7 :refer :all]))
 
-
 (defn day-1 []
   (let [input (butlast (slurp "resources/day1.txt"))]
     (do
@@ -60,11 +59,11 @@
   "Runs all days."
   [& args]
   (do (println "Advent of Code 2017 solutions")
-    (day-1)
-    (day-2)
-    (day-3)
-    (day-4)
-    (day-5)
-    (day-6)
+      (day-1)
+      (day-2)
+      (day-3)
+      (day-4)
+      (day-5)
+      (day-6)
     ; (day-7)
-    ))
+))

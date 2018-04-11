@@ -33,7 +33,6 @@
 ;       {}))
 
 
-
 ; (defn associated-map
 ;   [m k]
 ;   (some k (tree-seq (constantly true) vals m)))
@@ -74,18 +73,16 @@
          programs)]
     (when (not= programs new-programs) new-programs)))
 
-
 (defn recursive-dissoc
   "Associates program in programs with associated."
   [programs program]
   (if (map? programs)
     (reduce-kv #(if (= program %2)
-                 %1
-                 (assoc %1 %2 (recursive-dissoc %3 program)))
-              {}
-              programs)
+                  %1
+                  (assoc %1 %2 (recursive-dissoc %3 program)))
+               {}
+               programs)
     programs))
-
 
 ;https://stackoverflow.com/questions/28091305/find-value-of-specific-key-in-nested-map
 (defn find-nested
@@ -101,29 +98,22 @@
     ; (println (zipmap associated
     ;        (map #(find-nested programs %) associated)))
     (zipmap associated
-           (map #(find-nested programs %) associated))))
+            (map #(find-nested programs %) associated))))
 
 ; gotta dissociate everything in associated
 (defn add-to-maps
   [[programs weights] [program weight & associated]]
-
-
-    [(if (not (nil? associated))
-       (do
-         ; (println "**************")
-         ; (println associated)
-         ; (clojure.pprint/pprint programs)
-        (let [associated-to-map (associated-map programs associated)]
-          (if-let [walked (assoc-walk (dissoc-walk programs program)
-                                      program
-                                      associated-to-map)]
-            walked
-            (assoc programs
-                   program
-                   associated-to-map))))
-      programs)
-    (assoc weights program weight)])
-
+  [(if (not (nil? associated))
+     (let [associated-to-map (associated-map programs associated)]
+       (if-let [walked (assoc-walk (dissoc-walk programs program)
+                                   program
+                                   associated-to-map)]
+         walked
+         (assoc programs
+                program
+                associated-to-map)))
+     programs)
+   (assoc weights program weight)])
 
 (defn split-line
   [line]
@@ -137,7 +127,6 @@
   "Generates a map from a list of programs and returns the root program."
   [coll]
   (first (keys (first (to-map coll)))))
-
 
 (def lines (line-seq (clojure.java.io/reader "resources/day7-test1.txt")))
 ; (def mappy (to-map lines))

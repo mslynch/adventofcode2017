@@ -18,7 +18,6 @@
   (testing "91212129 produces a sum of 9."
     (is (= (inverse-captcha "91212129") 9))))
 
-
 (deftest part-2-a
   (testing "1212 produces a sum of 6."
     (is (= (inverse-captcha-2 "1212") 6))))

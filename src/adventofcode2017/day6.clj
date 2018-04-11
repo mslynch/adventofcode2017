@@ -43,8 +43,8 @@
   (if (.contains previous-banks banks)
     [step (- (count previous-banks) (.indexOf previous-banks banks))]
     (recur (reallocate banks)
-      (conj previous-banks banks)
-      (inc step))))
+           (conj previous-banks banks)
+           (inc step))))
 
 (defn steps-to-cycle
   "The number of reallocations needed to reach a cycle."

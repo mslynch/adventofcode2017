@@ -4,7 +4,7 @@
 (defn no-dups?
   "Returns true if there are no duplicate words."
   [passphrase]
-    (apply distinct? passphrase))
+  (apply distinct? passphrase))
 
 (defn no-anagrams?
   "Returns true if there are no anagrams."

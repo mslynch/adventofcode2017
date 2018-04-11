@@ -22,10 +22,10 @@
 (defn spiral-seq
   "A lazy seq of coordinates in the spiral."
   [direction position]
-    (let [new-position (next-position position direction)
-          new-direction (next-direction new-position direction)]
-      (lazy-seq (cons position
-                      (spiral-seq new-direction new-position)))))
+  (let [new-position (next-position position direction)
+        new-direction (next-direction new-position direction)]
+    (lazy-seq (cons position
+                    (spiral-seq new-direction new-position)))))
 
 (defn distance
   "The distance from the given coordinate to the origin."

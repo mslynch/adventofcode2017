@@ -15,7 +15,6 @@
   (testing "aa bb cc dd aaa is valid."
     (is (no-dups? (str/split "aa bb cc dd aaa" #"\s")))))
 
-
 (deftest part-2-a
   (testing "abcde fghij is valid."
     (is (no-anagrams? (str/split "abcde fghij" #"\s")))))
