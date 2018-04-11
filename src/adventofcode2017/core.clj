@@ -5,7 +5,8 @@
             [adventofcode2017.day3 :refer :all]
             [adventofcode2017.day4 :refer :all]
             [adventofcode2017.day5 :refer :all]
-            [adventofcode2017.day6 :refer :all]))
+            [adventofcode2017.day6 :refer :all]
+            [adventofcode2017.day7 :refer :all]))
 
 
 (defn day-1 []
@@ -48,6 +49,13 @@
     (println (str "part 1: " (steps-to-cycle [10 3 15 10 5 15 5 15 9 2 5 8 5 2 3 6])))
     (println (str "part 2: " (cycle-size [10 3 15 10 5 15 5 15 9 2 5 8 5 2 3 6])))))
 
+; (defn day-7 []
+;   (let [input (slurp "resources/day7.txt")]
+;     (do
+;       (println "Day 7: Recursive Circus")
+;       (println (str "part 1: " (something input inc)))
+;       (println (str "part 2: " (maze-str input fancy-offset))))))
+
 (defn -main
   "Runs all days."
   [& args]
@@ -57,4 +65,6 @@
     (day-3)
     (day-4)
     (day-5)
-    (day-6)))
+    (day-6)
+    ; (day-7)
+    ))
