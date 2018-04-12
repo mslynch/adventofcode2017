@@ -21,24 +21,26 @@
 
 (defn reallocate-distributor
   "While remaining > 0, increment the bank at index."
-  [banks remaining index]
+  [banks remaining indices]
   (if (zero? remaining)
     banks
-    (let [mod-index (mod index (count banks))]
+    (let [index (first indices)]
       (recur
-       (assoc banks mod-index (inc (banks mod-index)))
+       (assoc banks index (inc (banks index)))
        (dec remaining)
-       (inc index)))))
+       (rest indices)))))
 
 (defn reallocate
   "A reallocated list of banks."
   [banks]
   (let [indices-banks (map-indexed (fn [ind item] [ind item]) banks)
         [max-val index-of-max] (max-index indices-banks)]
-    (reallocate-distributor (assoc banks index-of-max 0) max-val (inc index-of-max))))
+    (reallocate-distributor (assoc banks index-of-max 0)
+                            max-val
+                            (drop (inc index-of-max) (cycle (range (count banks)))))))
 
 (defn cycle-info
-  "The number of steps required to reach a loop and the "
+  "The number of steps required to reach a loop and the size of the reallocation cycle."
   [banks previous-banks step]
   (if (.contains previous-banks banks)
     [step (- (count previous-banks) (.indexOf previous-banks banks))]
