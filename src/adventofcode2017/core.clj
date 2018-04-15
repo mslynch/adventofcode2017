@@ -53,7 +53,7 @@
     (do
       (println "Day 7: Recursive Circus")
       (println (str "part 1: " (bottom-program input)))
-      (println (str "part 2: " (bottom-program input))))))
+      (println (str "part 2: " (correct-weight input))))))
 
 (defn -main
   "Runs all days."

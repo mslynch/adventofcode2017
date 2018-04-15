@@ -11,7 +11,7 @@
   [programs [program weight & children]]
   (assoc programs
          program
-         [weight children]))
+         [(Integer/parseInt weight) children]))
 
 (defn populate-map
   "Populates a map with programs, (key is program, value is weight and children)."
@@ -40,9 +40,54 @@
   [lines]
   (root (populate-map lines)))
 
+(defn parent
+  "The parent of a program."
+  [program-infos program]
+  (first (first (filter (fn [[_ [_ children _]]]
+                          (some #(= program %) children))
+                        program-infos))))
+
+(defn weighted-map
+  "The map of program infos with key being [weight children total-weight]."
+  [program-infos program]
+  (let [[weight children] (program-infos program)]
+    (if children
+      (let [children-map (reduce #(weighted-map %1 %2) program-infos children)]
+        (assoc children-map
+               program
+               [weight
+                children
+                (reduce + weight (map #(nth (children-map %) 2) children))]))
+      (assoc program-infos program [weight children weight]))))
+
+(defn siblings
+  "A list containing the siblings of program."
+  [program-infos program]
+  (remove #(= program %) (second (program-infos (parent program-infos program)))))
+
+(defn other-weight
+  "Gets the normal weight of a program from its siblings."
+  [program-infos program]
+  (nth (program-infos (first (siblings program-infos program))) 2))
+
+(defn odd-program
+  "Gets the odd one out of a program's children."
+  [program-infos children]
+  (first (first (vals (filter (fn [[k v]] (= (count v) 1))
+                              (group-by #(nth (program-infos %) 2) children))))))
 
 
-; (def lines (line-seq (clojure.java.io/reader "resources/day7-test1.txt")))
-; (def mappy (populate-map lines))
-; (def children (all-children (vals mappy)))
-; (clojure.pprint/pprint mappy)
+(defn correct-weight-recurse
+  "Determines the correct number for an unbalanced tree."
+  [program-infos]
+  (loop [program (root program-infos)]
+    (let [[weight children total] (program-infos program)]
+      (if (and children (apply not= (map #(nth (program-infos %) 2) children)))
+        (recur (odd-program program-infos children))
+        (+ weight (- (other-weight program-infos program) total))))))
+
+(defn correct-weight
+  "Determines the correct weight of the program that has an incorrect weight."
+  [lines]
+  (let [populated (populate-map lines)]
+    (correct-weight-recurse (weighted-map populated (root populated)))))
