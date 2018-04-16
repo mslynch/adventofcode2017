@@ -6,7 +6,8 @@
             [adventofcode2017.day4 :refer :all]
             [adventofcode2017.day5 :refer :all]
             [adventofcode2017.day6 :refer :all]
-            [adventofcode2017.day7 :refer :all]))
+            [adventofcode2017.day7 :refer :all]
+            [adventofcode2017.day8 :refer :all]))
 
 (defn day-1 []
   (let [input (butlast (slurp "resources/day1.txt"))]
@@ -55,6 +56,14 @@
       (println (str "part 1: " (bottom-program input)))
       (println (str "part 2: " (correct-weight input))))))
 
+
+(defn day-8 []
+  (let [input (line-seq (clojure.java.io/reader "resources/day8.txt"))]
+    (do
+      (println "Day 8: I Heard You Like Registers")
+      (println (str "part 1: " (largest-register-value input)))
+      (println (str "part 2: " (largest-register-value-ever input))))))
+
 (defn -main
   "Runs all days."
   [& args]
@@ -66,4 +75,5 @@
     (day-5)
     (day-6)
     (day-7)
+    (day-8)
 ))
