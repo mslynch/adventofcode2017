@@ -1,4 +1,4 @@
-(ns adventofcode2017.day8
+(ns adventofcode2017.day08
   (:require [clojure.string :as str]))
 
 (defn line-to-instruction

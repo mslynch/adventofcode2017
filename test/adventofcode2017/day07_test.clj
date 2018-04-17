@@ -1,9 +1,9 @@
-(ns adventofcode2017.day7-test
+(ns adventofcode2017.day07-test
   (:require [clojure.test :refer :all]
             [clojure.string :as str]
-            [adventofcode2017.day7 :refer :all]))
+            [adventofcode2017.day07 :refer :all]))
 
-(def lines (line-seq (clojure.java.io/reader "resources/day7-test1.txt")))
+(def lines (line-seq (clojure.java.io/reader "resources/day07-test1.txt")))
 (def populated (populate-map lines))
 (def weighted (weighted-map populated (root populated)))
 

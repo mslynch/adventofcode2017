@@ -1,6 +1,6 @@
-(ns adventofcode2017.day9-test
+(ns adventofcode2017.day09-test
   (:require [clojure.test :refer :all]
-            [adventofcode2017.day9 :refer :all]))
+            [adventofcode2017.day09 :refer :all]))
 
 (deftest part-1-a
   (testing "Score, example 1."

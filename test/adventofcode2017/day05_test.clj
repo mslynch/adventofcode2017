@@ -1,6 +1,6 @@
-(ns adventofcode2017.day5-test
+(ns adventofcode2017.day05-test
   (:require [clojure.test :refer :all]
-            [adventofcode2017.day5 :refer :all]))
+            [adventofcode2017.day05 :refer :all]))
 
 (def initial-state [0 3 0 1 -3])
 (def states (maze-states initial-state 0 inc))

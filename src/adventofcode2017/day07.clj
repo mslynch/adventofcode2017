@@ -1,4 +1,4 @@
-(ns adventofcode2017.day7
+(ns adventofcode2017.day07
   (:require [clojure.string :as str]))
 
 (defn split-line

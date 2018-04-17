@@ -1,4 +1,4 @@
-(ns adventofcode2017.day3)
+(ns adventofcode2017.day03)
 
 (defn next-direction
   "The direction of the next square, given the current coordinate and direction."

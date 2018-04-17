@@ -1,4 +1,4 @@
-(ns adventofcode2017.day4
+(ns adventofcode2017.day04
   (:require [clojure.string :as str]))
 
 (defn no-dups?

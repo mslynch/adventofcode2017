@@ -1,9 +1,9 @@
-(ns adventofcode2017.day8-test
+(ns adventofcode2017.day08-test
   (:require [clojure.test :refer :all]
             [clojure.string :as str]
-            [adventofcode2017.day8 :refer :all]))
+            [adventofcode2017.day08 :refer :all]))
 
-(def lines (line-seq (clojure.java.io/reader "resources/day8-test.txt")))
+(def lines (line-seq (clojure.java.io/reader "resources/day08-test.txt")))
 (def instructions (map line-to-instruction lines))
 
 (deftest part-1

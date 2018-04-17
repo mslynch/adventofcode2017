@@ -1,4 +1,4 @@
-(ns adventofcode2017.day2
+(ns adventofcode2017.day02
   (:require [clojure.string :as str]))
 
 (defn parse-int

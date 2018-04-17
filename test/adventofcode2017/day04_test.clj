@@ -1,7 +1,7 @@
-(ns adventofcode2017.day4-test
+(ns adventofcode2017.day04-test
   (:require [clojure.test :refer :all]
             [clojure.string :as str]
-            [adventofcode2017.day4 :refer :all]))
+            [adventofcode2017.day04 :refer :all]))
 
 (deftest part-1-a
   (testing "aa bb cc dd ee is valid."

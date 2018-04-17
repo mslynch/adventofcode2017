@@ -1,6 +1,6 @@
-(ns adventofcode2017.day6-test
+(ns adventofcode2017.day06-test
   (:require [clojure.test :refer :all]
-            [adventofcode2017.day6 :refer :all]))
+            [adventofcode2017.day06 :refer :all]))
 
 (def initial [0 2 7 0])
 

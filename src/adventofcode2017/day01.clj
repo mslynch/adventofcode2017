@@ -1,4 +1,4 @@
-(ns adventofcode2017.day1)
+(ns adventofcode2017.day01)
 
 (defn match-val
   "Returns 1 if the inputs match, 0 if they do not."

@@ -1,6 +1,6 @@
-(ns adventofcode2017.day3-test
+(ns adventofcode2017.day03-test
   (:require [clojure.test :refer :all]
-            [adventofcode2017.day3 :refer :all]))
+            [adventofcode2017.day03 :refer :all]))
 
 (deftest part-1-a
   (testing "Data from square 1 is carried 0 steps."

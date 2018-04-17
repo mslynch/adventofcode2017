@@ -1,6 +1,6 @@
-(ns adventofcode2017.day1-test
+(ns adventofcode2017.day01-test
   (:require [clojure.test :refer :all]
-            [adventofcode2017.day1 :refer :all]))
+            [adventofcode2017.day01 :refer :all]))
 
 (deftest part-1-a
   (testing "1122 produces a sum of 3."

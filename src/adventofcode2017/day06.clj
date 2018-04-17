@@ -1,4 +1,4 @@
-(ns adventofcode2017.day6)
+(ns adventofcode2017.day06)
 
 (defn new-max-indices
   "Returns the new max and the new index."

@@ -1,4 +1,4 @@
-(ns adventofcode2017.day5
+(ns adventofcode2017.day05
   (:require [clojure.string :as str]))
 
 (defn next-state
