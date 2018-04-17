@@ -7,7 +7,8 @@
             [adventofcode2017.day5 :refer :all]
             [adventofcode2017.day6 :refer :all]
             [adventofcode2017.day7 :refer :all]
-            [adventofcode2017.day8 :refer :all]))
+            [adventofcode2017.day8 :refer :all]
+            [adventofcode2017.day9 :refer :all]))
 
 (defn day-1 []
   (let [input (butlast (slurp "resources/day1.txt"))]
@@ -64,6 +65,14 @@
       (println (str "part 1: " (largest-register-value input)))
       (println (str "part 2: " (largest-register-value-ever input))))))
 
+(defn day-9 []
+  (let [input (slurp "resources/day9.txt")
+        processed (process-stream input)]
+    (do
+      (println "Day 9: Stream Processing")
+      (println (str "part 1: " (first processed)))
+      (println (str "part 2: " (second processed))))))
+
 (defn -main
   "Runs all days."
   [& args]
@@ -76,4 +85,5 @@
     (day-6)
     (day-7)
     (day-8)
+    (day-9)
 ))
