@@ -5,24 +5,31 @@
 
 (def lines (line-seq (clojure.java.io/reader "resources/day07-test1.txt")))
 (def populated (populate-map lines))
-(def weighted (weighted-map populated (root populated)))
+(def parented (get-parent-map populated))
+(def weighted (get-weighted-map parented (get-root parented)))
 
-(deftest part-1
+(deftest calculate-correct-weight-test
+  (testing "Testing weight correction calculation."
+    (is (= 60
+           (calculate-correct-weight {:wrong-weight 68
+                                   :wrong-total 251
+                                   :right-total 243})))))
+
+(deftest get-bottom-program-test
   (testing "The bottom program is tknk."
-    (is (= (bottom-program lines) "tknk"))))
+    (is (= (get-bottom-program lines) "tknk"))))
 
-(deftest part-2
+(deftest get-correct-weight-test
   (testing "The one program's adjusted weight is 60."
-    (is (= (correct-weight lines) 60))))
+    (is (= (get-correct-weight lines) 60))))
+;
+; (deftest parent-test
+;   (testing "The parent of ugml is tknk."
+;     (is (= (get-parent populated) "tknk"))))
 
-(deftest parent-test
-  (testing "The parent of ugml is tknk."
-    (is (= (parent populated "ugml") "tknk"))))
+(def input (line-seq (clojure.java.io/reader "resources/day07.txt")))
+(def pars (get-parent-map (populate-map input)))
+(def w (get-weighted-map pars (get-root pars)))
+; vgzejbd is root
 
-(deftest other-weight-test
-  (testing "The other weight for ugml is 243."
-    (is (= (other-weight weighted "ugml") 243))))
-
-(deftest odd-program-test
-  (testing "tknk's odd program is ugml."
-    (is (= (odd-program weighted (second (weighted "tknk"))) "ugml"))))
+; [vuoqao snuewn fiprusz jjgjvki vwkkml kmpfxl]

@@ -54,8 +54,8 @@
   (let [input (line-seq (clojure.java.io/reader "resources/day07.txt"))]
     (do
       (println "Day 7: Recursive Circus")
-      (println (str "part 1: " (bottom-program input)))
-      (println (str "part 2: " (correct-weight input))))))
+      (println (str "part 1: " (get-bottom-program input)))
+      (println (str "part 2: " (get-correct-weight input))))))
 
 
 (defn day-08 []

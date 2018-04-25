@@ -1,12 +1,6 @@
 (ns adventofcode2017.day09
   (:require [clojure.string :as str]))
 
-;
-; (defn score-recurse
-;   "Recurses on the remaining characters in a string to build up a score."
-;   [score group-count in-garbage]
-;   loop )
-
 (defn process-stream
   "Calculates the score of a string."
   [input]
