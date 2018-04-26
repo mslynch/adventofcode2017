@@ -87,14 +87,16 @@
   "Returns true if the children aren't equal, but the odd program's children
    are equal."
   [program-infos children]
-  (and
-   (children-totals-are program-infos
-                        children
-                        not=)
-   (children-totals-are program-infos
-                        ((program-infos (get-odd-child program-infos children))
-                         :children)
-                        =)))
+  (do
+    (println "children: " children)
+   (and
+    (children-totals-are program-infos
+                         children
+                         not=)
+    (children-totals-are program-infos
+                         ((program-infos (get-odd-child program-infos children))
+                          :children)
+                         =))))
 
 (defn get-uneven-parent
   "Returns the program with unequal children."
@@ -103,6 +105,11 @@
        (filter (fn [[_ v]] children-pred program-infos v))
        keys
        first))
+
+(defn flash
+  [msg val]
+    (println (str msg ": " val))
+    val)
 
 (defn get-right-and-wrong-totals
   "Gets the right and wrong program."
@@ -113,6 +120,30 @@
     {:wrong-total wrong-total
      :right-total right-total
      :wrong-weight ((program-infos wrong-program) :weight)}))
+
+
+
+
+(defn leaf-node?
+  "Returns whether a program is a leaf node or not."
+  [program-infos program]
+  (nil? ((program-infos program) :children)))
+
+(defn weird?
+  ""
+  [programs])
+
+(defn calculate-balanced
+  [program-infos program]
+  (let [balanced?
+        (cond
+          (leaf-node? program-infos program) true
+          (weird? (map #() ((program-infos program) :children))) false
+          :else true)]
+    {:program program
+     :total-weight ((program-infos :total-weight))
+     :balanced? balanced}))
+
 
 (defn get-relevant-weights
   "Gets the right total, wrong total, and wrong weight from the parent of the bad program."
@@ -134,8 +165,11 @@
   [program-infos]
   (->> program-infos
        keys
+       ; (flash "keys")
        (group-by #((program-infos %) :parent))
+       ; (flash "grouped")
        (get-uneven-parent program-infos)
+       (flash "uneven parent")
        (get-relevant-weights program-infos)
        calculate-correct-weight))
 
