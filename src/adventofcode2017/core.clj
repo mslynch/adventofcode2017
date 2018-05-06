@@ -8,7 +8,9 @@
             [adventofcode2017.day06 :refer :all]
             [adventofcode2017.day07 :refer :all]
             [adventofcode2017.day08 :refer :all]
-            [adventofcode2017.day09 :refer :all]))
+            [adventofcode2017.day09 :refer :all]
+            [adventofcode2017.day10 :refer :all]
+            [clojure.string :as str]))
 
 (defn day-01 []
   (let [input (butlast (slurp "resources/day01.txt"))]
@@ -73,6 +75,16 @@
       (println (str "part 1: " (first processed)))
       (println (str "part 2: " (second processed))))))
 
+(defn day-10 []
+  (let [input-str "34,88,2,222,254,93,150,0,199,255,39,32,137,136,1,167"
+        input-list (map #(Integer/parseInt %) (str/split input-str #","))]
+    (do
+      (println "Day 10: Knot Hash")
+      (println (str "part 1: " (first-two-product input-list 256)))
+      (println (str "part 2: " (full-knot-hash input-str 256 64 16))))))
+
+
+
 (defn -main
   "Runs all days."
   [& args]
@@ -86,4 +98,5 @@
     (day-07)
     (day-08)
     (day-09)
+    (day-10)
 ))
