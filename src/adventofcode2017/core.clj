@@ -10,6 +10,8 @@
             [adventofcode2017.day08 :refer :all]
             [adventofcode2017.day09 :refer :all]
             [adventofcode2017.day10 :refer :all]
+            [adventofcode2017.day11 :refer :all]
+            [adventofcode2017.day12 :refer [connected-to-zero-count]]
             [clojure.string :as str]))
 
 (defn day-01 []
@@ -83,7 +85,19 @@
       (println (str "part 1: " (first-two-product input-list 256)))
       (println (str "part 2: " (full-knot-hash input-str 256 64 16))))))
 
+(defn day-11 []
+  (let [input (first (line-seq (clojure.java.io/reader "resources/day11.txt")))]
+    (do
+      (println "Day 11: Hex Ed")
+      (println (str "part 1: " (get-steps-away input)))
+      (println (str "part 2: " (max-steps-away input))))))
 
+(defn day-12 []
+  (let [input (line-seq (clojure.java.io/reader "resources/day12.txt"))]
+    (do
+      (println "Day 12: Digital Plumber")
+      (println (str "part 1: " (connected-to-zero-count input)))
+      (println (str "part 2: " (connected-to-zero-count input))))))
 
 (defn -main
   "Runs all days."
@@ -99,4 +113,6 @@
     (day-08)
     (day-09)
     (day-10)
+    (day-11)
+    (day-12)
 ))
