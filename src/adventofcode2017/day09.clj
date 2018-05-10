@@ -17,33 +17,33 @@
           (if in-garbage
             (let [garbage-escape (not= char \>)]
               (recur
-                (rest input)
-                score
-                (if garbage-escape (inc non-canceled) non-canceled)
-                group-count
-                garbage-escape))
+               (rest input)
+               score
+               (if garbage-escape (inc non-canceled) non-canceled)
+               group-count
+               garbage-escape))
             (cond
               (= char \{) (recur
-                            (rest input)
-                            score
-                            non-canceled
-                            (inc group-count)
-                            false)
+                           (rest input)
+                           score
+                           non-canceled
+                           (inc group-count)
+                           false)
               (= char \}) (recur
-                            (rest input)
-                            (+ score group-count)
-                            non-canceled
-                            (dec group-count)
-                            false)
+                           (rest input)
+                           (+ score group-count)
+                           non-canceled
+                           (dec group-count)
+                           false)
               (= char \<) (recur
-                            (rest input)
-                            score
-                            non-canceled
-                            group-count
-                            true)
+                           (rest input)
+                           score
+                           non-canceled
+                           group-count
+                           true)
               :else (recur
-                      (rest input)
-                      score
-                      non-canceled
-                      group-count
-                      false))))))))
+                     (rest input)
+                     score
+                     non-canceled
+                     group-count
+                     false))))))))

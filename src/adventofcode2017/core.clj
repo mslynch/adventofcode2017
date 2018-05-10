@@ -61,7 +61,6 @@
       (println (str "part 1: " (get-bottom-program input)))
       (println (str "part 2: " (get-correct-weight input))))))
 
-
 (defn day-08 []
   (let [input (line-seq (clojure.java.io/reader "resources/day08.txt"))]
     (do
@@ -103,16 +102,15 @@
   "Runs all days."
   [& args]
   (do (println "Advent of Code 2017 solutions")
-    (day-01)
-    (day-02)
-    (day-03)
-    (day-04)
-    (day-05)
-    (day-06)
-    (day-07)
-    (day-08)
-    (day-09)
-    (day-10)
-    (day-11)
-    (day-12)
-))
+      (day-01)
+      (day-02)
+      (day-03)
+      (day-04)
+      (day-05)
+      (day-06)
+      (day-07)
+      (day-08)
+      (day-09)
+      (day-10)
+      (day-11)
+      (day-12)))

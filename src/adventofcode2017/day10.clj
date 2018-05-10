@@ -17,12 +17,12 @@
   "Determines the new list, position, and skip size given a new length."
   [data input-length]
   (-> data
-       (assoc :list
-              (get-new-list (data :list) (data :position) input-length))
-       (assoc :position
-              (+ (data :position) (data :skip-size) input-length))
-       (assoc :skip-size
-              (inc (data :skip-size)))))
+      (assoc :list
+             (get-new-list (data :list) (data :position) input-length))
+      (assoc :position
+             (+ (data :position) (data :skip-size) input-length))
+      (assoc :skip-size
+             (inc (data :skip-size)))))
 
 (defn knot-hash
   "Gets the final list from processing all the input lengths."
@@ -30,7 +30,6 @@
   ((reduce process-input {:list (range size)
                           :position 0
                           :skip-size 0} input-lengths) :list))
-
 
 (defn first-two-product
   "Calculates the product of the first two elements of the calculated knot hash."
