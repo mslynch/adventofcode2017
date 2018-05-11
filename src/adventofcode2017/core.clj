@@ -11,7 +11,7 @@
             [adventofcode2017.day09 :refer :all]
             [adventofcode2017.day10 :refer :all]
             [adventofcode2017.day11 :refer :all]
-            [adventofcode2017.day12 :refer [connected-to-zero-count]]
+            [adventofcode2017.day12 :refer [connected-to-zero-count program-group-count]]
             [clojure.string :as str]))
 
 (defn day-01 []
@@ -96,7 +96,7 @@
     (do
       (println "Day 12: Digital Plumber")
       (println (str "part 1: " (connected-to-zero-count input)))
-      (println (str "part 2: " (connected-to-zero-count input))))))
+      (println (str "part 2: " (program-group-count input))))))
 
 (defn -main
   "Runs all days."

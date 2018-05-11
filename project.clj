@@ -8,4 +8,7 @@
   :main ^:skip-aot adventofcode2017.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}}
-  :plugins [[lein-cljfmt "0.5.7"]])
+  :plugins [[lein-cljfmt "0.5.7"]
+            [lein-kibit "0.1.6"]
+            [lein-bikeshed "0.5.1"]
+            [lein-ancient "0.6.15"]])

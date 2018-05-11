@@ -26,17 +26,32 @@
           {}
           programs))
 
-(defn connected-to-zero
-  "Gets all programs connected to program 0."
+(defn prepare-input
+  "Prepare input lines for processing."
   [lines]
-  (get-connected-to (programs-to-map (map split-line lines)) "0"))
+  (programs-to-map (map split-line lines)))
 
 (defn connected-to-zero-count
   "Gets the count of programs in program 0's group."
   [lines]
-  (count (connected-to-zero lines)))
+  (count (get-connected-to (prepare-input lines) "0")))
+
+(defn program-group-count-helper
+  "Recurses by removing keys from connection groups."
+  [programs]
+  (loop [remaining programs
+         group-count 0]
+    (let [new-remaining
+          (remove (fn [[k _]]
+                    (contains? (get-connected-to programs
+                                                 (first (keys remaining)))
+                               k))
+                  remaining)]
+     (if (empty? new-remaining)
+       (inc group-count)
+       (recur new-remaining (inc group-count))))))
 
 (defn program-group-count
   "Gets the number of groups from the input."
   [lines]
-  (count (connected-to-zero lines)))
+  (program-group-count-helper (prepare-input lines)))

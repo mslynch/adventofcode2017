@@ -3,7 +3,7 @@
             [adventofcode2017.day12 :refer :all]))
 
 (def input (line-seq (clojure.java.io/reader "resources/day12-test.txt")))
-(def connected (connected-to-zero input))
+(def connected (get-connected-to (prepare-input input) "0"))
 
 (deftest part-1-a
   (testing "Program 0 by definition."
@@ -32,3 +32,7 @@
 (deftest part-1-total
   (testing "A total of 6 programs are in this group."
     (is (= (connected-to-zero-count input) 6))))
+
+(deftest program-group-count-test
+  (testing "There are two groups in the input."
+    (is (= (program-group-count input) 2))))
