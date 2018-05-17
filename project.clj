@@ -11,4 +11,6 @@
   :plugins [[lein-cljfmt "0.5.7"]
             [lein-kibit "0.1.6"]
             [lein-bikeshed "0.5.1"]
-            [lein-ancient "0.6.15"]])
+            [lein-ancient "0.6.15"]
+            [jonase/eastwood "0.2.6"]
+            [venantius/yagni "0.1.4"]])

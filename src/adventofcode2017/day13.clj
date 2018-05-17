@@ -23,25 +23,13 @@
   "Removes unnecessary characters and splits a line by whitespace."
   [line]
   (map #(Integer/parseInt %)
-       (str/split (apply str (remove (partial = \:) line))
+       (str/split (str/join (remove (partial = \:) line))
                   #"\s+")))
-
-(defn next-delay-scanners
-  [scanners step]
-  (lazy-seq (map (fn [[depth range]]
-                   [(inc depth) range])
-                 scanners)))
 
 (defn total-severity-str
   "Calculates the total severity for a sequence of input strings."
   [lines]
   (total-severity (map to-depth-range lines)))
-
-(defn next-delay
-  "The next delay to try, given the previously tried delays."
-  [tried-delays]
-  (first (filter #(every? (fn [x] zero? (/ % x)) tried-delays)
-                 (iterate inc (inc (max tried-delays))))))
 
 (defn shortest-delay
   "Gets the shortest delay required to pass through the scanners undetected."

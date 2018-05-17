@@ -3,10 +3,10 @@
 
 (defn get-new-list
   "The new list, given the current position and input length."
-  [list position input]
-  (let [list-size (count list)
+  [old-list position input]
+  (let [list-size (count old-list)
         modded-position (mod position list-size)
-        dropped-cycled (drop modded-position (cycle list))
+        dropped-cycled (drop modded-position (cycle old-list))
         non-reversed-size (- list-size input)]
     (take list-size
           (drop (- list-size (mod position list-size))

@@ -4,7 +4,7 @@
 (defn next-state
   "The next state of the maze."
   [state position offset-changer]
-  (assoc state position (offset-changer (state position))))
+  (update-in state [position] offset-changer))
 
 (defn fancy-offset
   "Increment if the value is three or more; else decrement."

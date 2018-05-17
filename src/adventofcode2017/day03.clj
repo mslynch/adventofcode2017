@@ -4,10 +4,10 @@
   "The direction of the next square, given the current coordinate and direction."
   [[x y] direction]
   (cond
-    (and (= 1 x) (zero? y)) :up
-    (and (= x y)) (if (> x 0) :left :right)
-    (and (< x 0) (= x (- 0 y))) :down
-    (and (> x 0) (< y 0) (= (+ x y) 1)) :up
+    (and (= x 1) (zero? y)) :up
+    (= x y) (if (pos? x) :left :right)
+    (and (neg? x) (= x (- 0 y))) :down
+    (and (pos? x) (neg? y) (= (+ x y) 1)) :up
     :else direction))
 
 (defn next-position

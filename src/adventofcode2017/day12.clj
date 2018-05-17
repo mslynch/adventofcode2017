@@ -16,7 +16,7 @@
 (defn split-line
   "Removes unnecessary characters and splits a line by whitespace."
   [line]
-  (str/split (apply str (remove #(contains? #{\< \- \> \,} %) line))  #"\s+"))
+  (str/split (str/join (remove #(contains? #{\< \- \> \,} %) line))  #"\s+"))
 
 (defn programs-to-map
   "Converts a list of lists of programs to a map."

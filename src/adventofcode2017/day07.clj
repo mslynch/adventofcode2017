@@ -4,7 +4,7 @@
 (defn split-line
   "Splits each line and removes unnecessary characters."
   [line]
-  (str/split (apply str (remove #(contains? #{\( \) \- \> \,} %) line))  #"\s+"))
+  (str/split (str/join (remove #(contains? #{\( \) \- \> \,} %) line))  #"\s+"))
 
 (defn find-parent
   "Finds the parent of program from program-infos."
@@ -79,12 +79,11 @@
                   (vals (group-by #((program-infos %) :total-weight) children)))
         [[weird-program]] (by-single-program-count true)
         [[normal-program & _]] (by-single-program-count false)]
-    (if weird-program
+    (when weird-program
       {:program weird-program
        :right-total ((program-infos normal-program) :total-weight)
        :wrong-total ((program-infos weird-program) :total-weight)
-       :wrong-weight ((program-infos weird-program) :weight)}
-      nil)))
+       :wrong-weight ((program-infos weird-program) :weight)})))
 
 (defn get-wrong-weight-program
   "Recurses through the tree to find the unbalanced program. Returns data from

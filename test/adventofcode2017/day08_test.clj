@@ -10,7 +10,7 @@
   (testing "The largest value in any register after completing instructions is 1."
     (is (= (largest-register-value lines) 1))))
 
-(deftest part-1
+(deftest part-2
   (testing "The largest value in any register while completing instructions is 10."
     (is (= (largest-register-value-ever lines) 10))))
 

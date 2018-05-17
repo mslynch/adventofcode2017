@@ -26,7 +26,7 @@
     banks
     (let [index (first indices)]
       (recur
-       (assoc banks index (inc (banks index)))
+       (update-in banks [index] inc)
        (dec remaining)
        (rest indices)))))
 
