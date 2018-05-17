@@ -47,9 +47,9 @@
                                                  (first (keys remaining)))
                                k))
                   remaining)]
-     (if (empty? new-remaining)
-       (inc group-count)
-       (recur new-remaining (inc group-count))))))
+      (if (empty? new-remaining)
+        (inc group-count)
+        (recur new-remaining (inc group-count))))))
 
 (defn program-group-count
   "Gets the number of groups from the input."
