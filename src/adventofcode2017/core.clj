@@ -13,7 +13,9 @@
             [adventofcode2017.day11 :refer :all]
             [adventofcode2017.day12 :refer [connected-to-zero-count program-group-count]]
             [adventofcode2017.day13 :refer [total-severity-str shortest-delay-str]]
-            [clojure.string :as str]))
+            [adventofcode2017.day14 :refer [hash-to-coords region-count]]
+            [clojure.string :as str]
+            [clojure.pprint :as pp]))
 
 (defn day-01 []
   (let [input (butlast (slurp "resources/day01.txt"))]
@@ -95,20 +97,37 @@
     (println (str "part 1: " (total-severity-str input)))
     (println (str "part 2: " (shortest-delay-str input)))))
 
+(defn day-13 []
+  (let [input (line-seq (clojure.java.io/reader "resources/day13.txt"))]
+    (println "Day 13: Packet Scanners")
+    (println (str "part 1: " (total-severity-str input)))
+    (println (str "part 2: " (shortest-delay-str input)))))
+
+(defn day-14 []
+  (let [coords (hash-to-coords "wenycdww")]
+    (println "Day 14: Disk Defragmentation")
+    (println (str "part 1: " (count coords)))
+    (println (str "part 2: " (region-count coords)))
+    ; (pp/pprint (map #(take 8 %) (take 8 (region-count binary))))
+    ))
+
+
 (defn -main
   "Runs all days."
   [& args]
-  (do (println "Advent of Code 2017 solutions")
-      (day-01)
-      (day-02)
-      (day-03)
-      (day-04)
-      (day-05)
-      (day-06)
-      (day-07)
-      (day-08)
-      (day-09)
-      (day-10)
-      (day-11)
-      (day-12)
-      (day-13)))
+  (do
+    (println "Advent of Code 2017 solutions")
+    ; (day-01)
+    ; (day-02)
+    ; (day-03)
+    ; (day-04)
+    ; (day-05)
+    ; (day-06)
+    ; (day-07)
+    ; (day-08)
+    ; (day-09)
+    ; (day-10)
+    ; (day-11)
+    ; (day-12)
+    ; (day-13)
+    (day-14)))

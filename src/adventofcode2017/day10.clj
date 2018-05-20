@@ -36,9 +36,13 @@
   [input-lengths size]
   (apply * (take 2 (knot-hash size input-lengths))))
 
+(def size 256)
+(def repetitions 64)
+(def partitions 16)
+
 (defn full-knot-hash
   "Calculates the full knot hash using hexadecimal and XOR."
-  [input-lengths size repetitions partitions]
+  [input-lengths]
   (->> (concat (map int input-lengths) '(17 31 73 47 23))
        (repeat repetitions)
        (apply concat)
