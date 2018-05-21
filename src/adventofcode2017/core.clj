@@ -1,21 +1,21 @@
 (ns adventofcode2017.core
   (:gen-class)
-  (:require [adventofcode2017.day01 :refer :all]
-            [adventofcode2017.day02 :refer :all]
-            [adventofcode2017.day03 :refer :all]
-            [adventofcode2017.day04 :refer :all]
-            [adventofcode2017.day05 :refer :all]
-            [adventofcode2017.day06 :refer :all]
-            [adventofcode2017.day07 :refer :all]
-            [adventofcode2017.day08 :refer :all]
-            [adventofcode2017.day09 :refer :all]
-            [adventofcode2017.day10 :refer :all]
-            [adventofcode2017.day11 :refer :all]
+  (:require [adventofcode2017.day01 :refer [inverse-captcha inverse-captcha-2]]
+            [adventofcode2017.day02 :refer [checksum difference even-division]]
+            [adventofcode2017.day03 :refer [spiral first-larger-than]]
+            [adventofcode2017.day04 :refer [num-valid no-dups? no-anagrams?]]
+            [adventofcode2017.day05 :refer [maze-str fancy-offset]]
+            [adventofcode2017.day06 :refer [steps-to-cycle cycle-size]]
+            [adventofcode2017.day07 :refer [get-bottom-program get-correct-weight]]
+            [adventofcode2017.day08 :refer [largest-register-value largest-register-value-ever]]
+            [adventofcode2017.day09 :refer [process-stream]]
+            [adventofcode2017.day10 :refer [first-two-product full-knot-hash]]
+            [adventofcode2017.day11 :refer [get-steps-away max-steps-away]]
             [adventofcode2017.day12 :refer [connected-to-zero-count program-group-count]]
             [adventofcode2017.day13 :refer [total-severity-str shortest-delay-str]]
             [adventofcode2017.day14 :refer [hash-to-coords region-count]]
-            [clojure.string :as str]
-            [clojure.pprint :as pp]))
+            [adventofcode2017.day15 :refer [judge-count]]
+            [clojure.string :as str]))
 
 (defn day-01 []
   (let [input (butlast (slurp "resources/day01.txt"))]
@@ -107,27 +107,33 @@
   (let [coords (hash-to-coords "wenycdww")]
     (println "Day 14: Disk Defragmentation")
     (println (str "part 1: " (count coords)))
-    (println (str "part 2: " (region-count coords)))
-    ; (pp/pprint (map #(take 8 %) (take 8 (region-count binary))))
-    ))
+    (println (str "part 2: " (region-count coords)))))
 
+(defn day-15 []
+  (let [start-a 618
+        start-b 814]
+    (println "Day 15: Dueling Generators")
+    (println (str "part 1: " (judge-count 40000000 start-a start-b)))
+    ; (println (str "part 2: " (region-count coords)))
+    ))
 
 (defn -main
   "Runs all days."
   [& args]
   (do
     (println "Advent of Code 2017 solutions")
-    ; (day-01)
-    ; (day-02)
-    ; (day-03)
-    ; (day-04)
-    ; (day-05)
-    ; (day-06)
-    ; (day-07)
-    ; (day-08)
-    ; (day-09)
-    ; (day-10)
-    ; (day-11)
-    ; (day-12)
-    ; (day-13)
-    (day-14)))
+    (day-01)
+    (day-02)
+    (day-03)
+    (day-04)
+    (day-05)
+    (day-06)
+    (day-07)
+    (day-08)
+    (day-09)
+    (day-10)
+    (day-11)
+    (day-12)
+    (day-13)
+    (day-14)
+    (day-15)))

@@ -4,7 +4,7 @@
             [clojure.string :as str]))
 
 (def coords (hash-to-coords "flqrgnkx"))
-;
+
 (deftest prehash-rows-test
   (testing "Pre-hash rows."
     (is (= (prehash-rows "asdf" 3)
