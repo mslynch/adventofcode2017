@@ -14,7 +14,7 @@
             [adventofcode2017.day12 :refer [connected-to-zero-count program-group-count]]
             [adventofcode2017.day13 :refer [total-severity-str shortest-delay-str]]
             [adventofcode2017.day14 :refer [hash-to-coords region-count]]
-            [adventofcode2017.day15 :refer [judge-count]]
+            [adventofcode2017.day15 :refer [judge-count-1 judge-count-2]]
             [clojure.string :as str]))
 
 (defn day-01 []
@@ -113,9 +113,8 @@
   (let [start-a 618
         start-b 814]
     (println "Day 15: Dueling Generators")
-    (println (str "part 1: " (judge-count 40000000 start-a start-b)))
-    ; (println (str "part 2: " (region-count coords)))
-    ))
+    (println (str "part 1: " (judge-count-1 40000000 start-a start-b)))
+    (println (str "part 1: " (judge-count-2 5000000 start-a start-b)))))
 
 (defn -main
   "Runs all days."
