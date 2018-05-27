@@ -1,6 +1,7 @@
 (ns adventofcode2017.core
   (:gen-class)
-  (:require [adventofcode2017.day01 :refer [inverse-captcha inverse-captcha-2]]
+  (:require [clojure.tools.cli :refer [parse-opts]]
+            [adventofcode2017.day01 :refer [inverse-captcha inverse-captcha-2]]
             [adventofcode2017.day02 :refer [checksum difference even-division]]
             [adventofcode2017.day03 :refer [spiral first-larger-than]]
             [adventofcode2017.day04 :refer [num-valid no-dups? no-anagrams?]]
@@ -15,6 +16,7 @@
             [adventofcode2017.day13 :refer [total-severity-str shortest-delay-str]]
             [adventofcode2017.day14 :refer [hash-to-coords region-count]]
             [adventofcode2017.day15 :refer [judge-count-1 judge-count-2]]
+            [adventofcode2017.day16 :refer [dance dance-n]]
             [clojure.string :as str]))
 
 (defn day-01 []
@@ -77,7 +79,7 @@
         input-list (map #(Integer/parseInt %) (str/split input-str #","))]
     (println "Day 10: Knot Hash")
     (println (str "part 1: " (first-two-product input-list 256)))
-    (println (str "part 2: " (full-knot-hash input-str 256 64 16)))))
+    (println (str "part 2: " (full-knot-hash input-str)))))
 
 (defn day-11 []
   (let [input (first (line-seq (clojure.java.io/reader "resources/day11.txt")))]
@@ -116,8 +118,15 @@
     (println (str "part 1: " (judge-count-1 40000000 start-a start-b)))
     (println (str "part 1: " (judge-count-2 5000000 start-a start-b)))))
 
+(defn day-16 []
+  (let [programs [\a \b \c \d \e \f \g \h \i \j \k \l \m \n \o \p]
+        input (first (line-seq (clojure.java.io/reader "resources/day16.txt")))]
+    (println "Day 9: Stream Processing")
+    (println (str "part 1: " (str/join (dance programs input))))
+    (println (str "part 2: " (str/join (dance-n programs input 1000000000))))))
+
 (defn -main
-  "Runs all days."
+  "Run the solutions!"
   [& args]
   (do
     (println "Advent of Code 2017 solutions")
@@ -135,4 +144,5 @@
     (day-12)
     (day-13)
     (day-14)
-    (day-15)))
+    (day-15)
+    (day-16)))
