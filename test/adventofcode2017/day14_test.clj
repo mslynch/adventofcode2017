@@ -13,12 +13,12 @@
 (deftest hex-to-binary-test-1
   (testing "Hexadecimal to binary conversion."
     (is (str/ends-with? (hex-to-binary "4")
-           " 100"))))
+                        " 100"))))
 
 (deftest hex-to-binary-test-2
   (testing "Hexadecimal to binary conversion."
     (is (str/ends-with? (hex-to-binary "bb")
-           " 10111011"))))
+                        " 10111011"))))
 
 (deftest hex-to-binary-test-3
   (testing "Hexadecimal to binary conversion."

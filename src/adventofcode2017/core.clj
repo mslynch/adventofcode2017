@@ -99,12 +99,6 @@
     (println (str "part 1: " (total-severity-str input)))
     (println (str "part 2: " (shortest-delay-str input)))))
 
-(defn day-13 []
-  (let [input (line-seq (clojure.java.io/reader "resources/day13.txt"))]
-    (println "Day 13: Packet Scanners")
-    (println (str "part 1: " (total-severity-str input)))
-    (println (str "part 2: " (shortest-delay-str input)))))
-
 (defn day-14 []
   (let [coords (hash-to-coords "wenycdww")]
     (println "Day 14: Disk Defragmentation")

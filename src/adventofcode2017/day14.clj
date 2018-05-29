@@ -4,8 +4,8 @@
 
 (defn prehash-rows
   "Returns a list containing the rows to apply knot hash on."
-  [key num-rows]
-  (map #(str key \- %) (range num-rows)))
+  [k num-rows]
+  (map #(str k \- %) (range num-rows)))
 
 (def num-rows 128)
 

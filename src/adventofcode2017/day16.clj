@@ -41,27 +41,6 @@
   [programs input]
   (reduce apply-move programs (str/split input #",")))
 
-(defn letter-to-index
-  "Converts a letter to its position in the alphabet."
-  [letter]
-  (- (int letter) 97))
-
-(defn dance-again
-  "Runs the entire dance using the state after the first dance."
-  [programs danced]
-  (loop [index 0
-         danced danced
-         rearranged programs]
-    (if (empty? danced)
-      rearranged
-      (recur
-       (inc index)
-       (rest danced)
-       (->> (first danced)
-            letter-to-index
-            programs
-            (assoc rearranged index))))))
-
 (defn cycle-after
   "Detects the number of dances needed to cycle."
   [programs input]
