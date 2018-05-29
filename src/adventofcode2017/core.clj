@@ -17,6 +17,7 @@
             [adventofcode2017.day14 :refer [hash-to-coords region-count]]
             [adventofcode2017.day15 :refer [judge-count-1 judge-count-2]]
             [adventofcode2017.day16 :refer [dance dance-n]]
+            [adventofcode2017.day17 :refer [spinlock value-after value-after-0]]
             [clojure.string :as str]))
 
 (defn day-01 []
@@ -121,9 +122,15 @@
 (defn day-16 []
   (let [programs [\a \b \c \d \e \f \g \h \i \j \k \l \m \n \o \p]
         input (first (line-seq (clojure.java.io/reader "resources/day16.txt")))]
-    (println "Day 9: Stream Processing")
+    (println "Day 16: Permutation Promenade")
     (println (str "part 1: " (str/join (dance programs input))))
     (println (str "part 2: " (str/join (dance-n programs input 1000000000))))))
+
+(defn day-17 []
+  (let [input 356]
+    (println "Day 17: Spinlock")
+    (println (str "part 1: " (value-after (spinlock 2017 input) 2017)))
+    (time (println (str "part 2: " (value-after-0 50000000 input))))))
 
 (defn -main
   "Run the solutions!"
@@ -145,4 +152,5 @@
     (day-13)
     (day-14)
     (day-15)
-    (day-16)))
+    (day-16)
+    (day-17)))
