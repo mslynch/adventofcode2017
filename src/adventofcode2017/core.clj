@@ -1,7 +1,6 @@
 (ns adventofcode2017.core
   (:gen-class)
-  (:require [clojure.tools.cli :refer [parse-opts]]
-            [adventofcode2017.day01 :refer [inverse-captcha inverse-captcha-2]]
+  (:require [adventofcode2017.day01 :refer [inverse-captcha inverse-captcha-2]]
             [adventofcode2017.day02 :refer [checksum difference even-division]]
             [adventofcode2017.day03 :refer [spiral first-larger-than]]
             [adventofcode2017.day04 :refer [num-valid no-dups? no-anagrams?]]
