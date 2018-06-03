@@ -17,6 +17,7 @@
             [adventofcode2017.day15 :refer [judge-count-1 judge-count-2]]
             [adventofcode2017.day16 :refer [dance dance-n]]
             [adventofcode2017.day17 :refer [spinlock value-after value-after-0]]
+            [adventofcode2017.day18 :refer [duet duet-async]]
             [clojure.string :as str]))
 
 (defn day-01 []
@@ -125,6 +126,12 @@
     (println (str "part 1: " (value-after (spinlock 2017 input) 2017)))
     (time (println (str "part 2: " (value-after-0 50000000 input))))))
 
+(defn day-18 []
+  (let [input (line-seq (clojure.java.io/reader "resources/day18.txt"))]
+    (println "Day 18: Duet")
+    (println (str "part 1: " (duet input)))
+    (println (str "part 2: " (duet-async input)))))
+
 (defn -main
   "Run the solutions!"
   [& args]
@@ -146,4 +153,5 @@
     (day-14)
     (day-15)
     (day-16)
-    (day-17)))
+    (day-17)
+    (day-18)))
