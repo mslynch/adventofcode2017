@@ -11,13 +11,26 @@
     :left  [row (dec col)]
     :right [row (inc col)]))
 
-(defn path-char?
-  "Whether a character is a | or -."
+(defn opposite-direction
+  "The opposite of the past direction."
+  [direction]
+  (condp = direction
+    :up :down
+    :down :up
+    :left :right
+    :right :left))
+
+(defn bar-char?
+  "Whether a character is a | or - (for the path)."
   [c]
   (or (= \| c)
       (= \- c)))
 
-; (defn )
+(defn path-char?
+  "Whether a character is a capital letter or a bar (for the path)."
+  [c]
+  (or (bar-char? c)
+      (re-matches #"[A-Z]" (str c))))
 
 (defn turn
   "Returns the position and direction after a turn."
@@ -27,10 +40,11 @@
               [row (inc col)]
               [(dec row) col]
               [(inc row) col]]
-             (remove (fn [[r c]]
-                       = \space (get-in diagram [r c])))
              (filter (fn [[r c]]
                        (path-char? (get-in diagram [r c]))))
+             (remove (fn [[r c]]
+                       (= (move-direction (opposite-direction direction) [row col])
+                          [r c])))
              first)]
     {:position [new-row new-col]
      :direction (cond
@@ -42,34 +56,43 @@
 (defn next-state
   "The next state (position, direction, and output chars.)"
   [diagram state]
-  (do
-    (println (state :position))
-    (println (type (state :position)))
-    (let [[row col]    (state :position)
-          direction    (state :direction)
-          chars        (state :chars)
-          diagram-char (get-in diagram [row col])]
+  (update
+   (let [[row col]    (state :position)
+         direction    (state :direction)
+         chars        (state :chars)
+         diagram-char (get-in diagram [row col])]
      (cond
-       (path-char? diagram-char)
+       (bar-char? diagram-char)
        (assoc state :position (move-direction direction [row col]))
+       (= \+ diagram-char)
+       (merge state (turn diagram direction [row col]))
        (re-matches #"[A-Z]" (str diagram-char))
        (-> state
            (assoc :position (move-direction direction [row col]))
            (assoc :chars (conj chars diagram-char)))
-       (= \+ diagram-char)
-       (merge state (turn diagram direction [row col]))
        (= \space diagram-char)
-       (assoc state :direction :stopped)))))
+       (assoc state :direction :stopped)))
+   :steps
+   inc))
+
+(defn walk-path
+  "Walks the input path and returns data."
+  [input]
+  (let [diagram (mapv vec input)]
+    (loop [state {:position  [0 (.indexOf (first diagram) \|)]
+                  :direction :down
+                  :chars     []
+                  :steps     -1}]
+      (if (= :stopped (state :direction))
+        state
+        (recur (next-state diagram state))))))
 
 (defn path-letters
   "The letters found by following the path."
   [input]
-  (let [diagram (mapv #(vec %) input)]
-    (loop [state {:position  [0 (.indexOf (first diagram) \|)]
-                  :direction :down
-                  :chars     []}]
-      (if (= :stopped (state :direction))
-        (str/join (state :chars))
-        (do
-          (println (state :chars))
-          (recur (next-state diagram state)))))))
+  (str/join ((walk-path input) :chars)))
+
+(defn path-steps
+  "The number of steps taken by walking the path."
+  [input]
+  ((walk-path input) :steps))

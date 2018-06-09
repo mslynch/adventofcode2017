@@ -18,6 +18,7 @@
             [adventofcode2017.day16 :refer [dance dance-n]]
             [adventofcode2017.day17 :refer [spinlock value-after value-after-0]]
             [adventofcode2017.day18 :refer [duet duet-async]]
+            [adventofcode2017.day19 :refer [path-letters path-steps]]
             [clojure.string :as str]))
 
 (defn day-01 []
@@ -132,6 +133,12 @@
     (println (str "part 1: " (duet input)))
     (println (str "part 2: " (duet-async input)))))
 
+(defn day-19 []
+  (let [input (line-seq (clojure.java.io/reader "resources/day19.txt"))]
+    (println "Day 19: A Series of Tubes")
+    (println (str "part 1: " (path-letters input)))
+    (println (str "part 2: " (path-steps input)))))
+
 (defn -main
   "Run the solutions!"
   [& args]
@@ -154,4 +161,5 @@
     (day-15)
     (day-16)
     (day-17)
-    (day-18)))
+    (day-18)
+    (day-19)))
