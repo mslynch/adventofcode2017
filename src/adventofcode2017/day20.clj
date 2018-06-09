@@ -1,4 +1,4 @@
-(ns adventofcode2017.day19
+(ns adventofcode2017.day20
   (:require [clojure.string :as str]))
 
 (defn move-direction
