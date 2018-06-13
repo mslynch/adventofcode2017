@@ -1,97 +1,69 @@
 (ns adventofcode2017.day20
   (:require [clojure.string :as str]))
 
-(defn move-direction
-  "The next position after moving in a given direction."
-  [direction [row col]]
-  (condp = direction
-    :up    [(dec row) col]
-    :down  [(inc row) col]
-    :left  [row (dec col)]
-    :right [row (inc col)]))
+(defn parse-line
+  "Splits a line into ((px py pz) (vx vy vz) (ax ay az))."
+  [line]
+  (partition 3
+             (map #(Integer/parseInt %)
+                  (str/split (str/join (remove #(contains? #{\p \v \a \= \< \> \space} %)
+                                               line))
+                             #","))))
 
-(defn opposite-direction
-  "The opposite of the past direction."
-  [direction]
-  (condp = direction
-    :up :down
-    :down :up
-    :left :right
-    :right :left))
+(defn manhattan
+  "The Manhattan distance of a point to another point."
+  [p0 p1]
+  (reduce + (map #(Math/abs (- %1 %2)) p0 p1)))
 
-(defn bar-char?
-  "Whether a character is a | or - (for the path)."
-  [c]
-  (or (= \| c)
-      (= \- c)))
+(defn min-position-helper
+  "Updates data with the given particle if it is closer to the origin."
+  [data [position velocity acceleration]]
+  (let [test-distance (manhattan position [0 0 0])]
+    (if (< test-distance (data :distance))
+      {:particle [position velocity acceleration]
+       :distance test-distance}
+      data)))
 
-(defn path-char?
-  "Whether a character is a capital letter or a bar (for the path)."
-  [c]
-  (or (bar-char? c)
-      (re-matches #"[A-Z]" (str c))))
+(defn min-position-particle
+  "Finds the particle with minimum position distance."
+  [particles]
+  (let [first-particle (first particles)]
+    ((reduce min-position-helper
+             {:particle first-particle
+              :distance (manhattan (first first-particle) [0 0 0])}
+             (rest particles))
+     :particle)))
 
-(defn turn
-  "Returns the position and direction after a turn."
-  [diagram direction [row col]]
-  (let [[new-row new-col]
-        (->> [[row (dec col)]
-              [row (inc col)]
-              [(dec row) col]
-              [(inc row) col]]
-             (filter (fn [[r c]]
-                       (path-char? (get-in diagram [r c]))))
-             (remove (fn [[r c]]
-                       (= (move-direction (opposite-direction direction) [row col])
-                          [r c])))
-             first)]
-    {:position [new-row new-col]
-     :direction (cond
-                  (< new-row row) :up
-                  (> new-row row) :down
-                  (< new-col col) :left
-                  (> new-col col) :right)}))
+(defn next-pos
+  "Calculates the next position."
+  [[[px py pz] [vx vy vz] [ax ay az]]]
+  [[(+ px vx ax) (+ py vy ay) (+ pz vz az)]
+   [(+ vx ax) (+ vy ay) (+ vz az)]
+   [ax ay az]])
 
-(defn next-state
-  "The next state (position, direction, and output chars.)"
-  [diagram state]
-  (update
-   (let [[row col]    (state :position)
-         direction    (state :direction)
-         chars        (state :chars)
-         diagram-char (get-in diagram [row col])]
-     (cond
-       (bar-char? diagram-char)
-       (assoc state :position (move-direction direction [row col]))
-       (= \+ diagram-char)
-       (merge state (turn diagram direction [row col]))
-       (re-matches #"[A-Z]" (str diagram-char))
-       (-> state
-           (assoc :position (move-direction direction [row col]))
-           (assoc :chars (conj chars diagram-char)))
-       (= \space diagram-char)
-       (assoc state :direction :stopped)))
-   :steps
-   inc))
+(defn iterated-particles
+  "Iterates particle movement n times."
+  [particles n]
+  (nth (iterate #(map next-pos %) particles) n))
 
-(defn walk-path
-  "Walks the input path and returns data."
+(defn iterated-particles-collisions
+  "Iterates particle movement n times."
+  [particles n]
+  (nth (iterate #(let [moved-particles (map next-pos %)]
+                   (mapcat (fn [[_ v]]
+                             v)
+                           (filter (fn [[k v]]
+                                     (= 1 (count v)))
+                                   (group-by first moved-particles))))
+                particles) n))
+
+(defn closest-to-origin
+  "The index of the closest particle to the origin."
   [input]
-  (let [diagram (mapv vec input)]
-    (loop [state {:position  [0 (.indexOf (first diagram) \|)]
-                  :direction :down
-                  :chars     []
-                  :steps     -1}]
-      (if (= :stopped (state :direction))
-        state
-        (recur (next-state diagram state))))))
+  (let [iterated (iterated-particles (map parse-line input) 1000)]
+    (.indexOf iterated (min-position-particle iterated))))
 
-(defn path-letters
-  "The letters found by following the path."
+(defn left-after-collisions
+  "The number of particles lef after collisions."
   [input]
-  (str/join ((walk-path input) :chars)))
-
-(defn path-steps
-  "The number of steps taken by walking the path."
-  [input]
-  ((walk-path input) :steps))
+  (count (iterated-particles-collisions (map parse-line input) 1000)))
