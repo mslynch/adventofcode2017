@@ -151,7 +151,7 @@
   (let [input (line-seq (clojure.java.io/reader "resources/day21.txt"))]
     (println "Day 21: Fractal Art")
     (println (str "part 1: " (on-after-n-iterations input 5)))
-    ; (println (str "part 2: " (left-after-collisions input)))
+    (println (str "part 1: " (on-after-n-iterations input 18)))
     ))
 
 (defn -main
