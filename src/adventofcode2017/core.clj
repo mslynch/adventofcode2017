@@ -20,10 +20,11 @@
             [adventofcode2017.day18 :refer [duet duet-async]]
             [adventofcode2017.day19 :refer [path-letters path-steps]]
             [adventofcode2017.day20 :refer [closest-to-origin left-after-collisions]]
+            [adventofcode2017.day21 :refer [on-after-n-iterations]]
             [clojure.string :as str]))
 
 (defn day-01 []
-  (let [input (butlast (slurp "resources/day01.txt"))]
+  (let [input (slurp "resources/day01.txt")]
     (println "Day 1: Inverse Captcha")
     (println (str "part 1: " (inverse-captcha input)))
     (println (str "part 2: " (inverse-captcha-2 input)))))
@@ -144,7 +145,13 @@
   (let [input (line-seq (clojure.java.io/reader "resources/day20.txt"))]
     (println "Day 20: Particle Swarm")
     (println (str "part 1: " (closest-to-origin input)))
-    (println (str "part 2: " (left-after-collisions input)))
+    (println (str "part 2: " (left-after-collisions input)))))
+
+(defn day-21 []
+  (let [input (line-seq (clojure.java.io/reader "resources/day21.txt"))]
+    (println "Day 21: Fractal Art")
+    (println (str "part 1: " (on-after-n-iterations input 5)))
+    ; (println (str "part 2: " (left-after-collisions input)))
     ))
 
 (defn -main
@@ -152,23 +159,24 @@
   [& args]
   (do
     (println "Advent of Code 2017 solutions")
-    (day-01)
-    (day-02)
-    (day-03)
-    (day-04)
-    (day-05)
-    (day-06)
-    (day-07)
-    (day-08)
-    (day-09)
-    (day-10)
-    (day-11)
-    (day-12)
-    (day-13)
-    (day-14)
-    (day-15)
-    (day-16)
-    (day-17)
-    (day-18)
-    (day-19)
-    (day-20)))
+    ; (day-01)
+    ; (day-02)
+    ; (day-03)
+    ; (day-04)
+    ; (day-05)
+    ; (day-06)
+    ; (day-07)
+    ; (day-08)
+    ; (day-09)
+    ; (day-10)
+    ; (day-11)
+    ; (day-12)
+    ; (day-13)
+    ; (day-14)
+    ; (day-15)
+    ; (day-16)
+    ; (day-17)
+    ; (day-18)
+    ; (day-19)
+    ; (day-20)
+    (day-21)))
