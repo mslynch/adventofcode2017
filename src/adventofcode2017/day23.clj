@@ -8,7 +8,7 @@
     (registers arg)
     arg))
 
-(defn set
+(defn set-instr
   "Sets register x to the value of y."
   [data [x y]]
   (-> data
@@ -54,7 +54,7 @@
   "Parses instructions into corresponding functions and strings into integers."
   [input]
   (mapv #(let [[instruction & args] (str/split % #" ")]
-           [({"set" set
+           [({"set" set-instr
               "sub" sub
               "mul" mul
               "jnz" jnz} instruction)
@@ -80,7 +80,6 @@
            (if (= instruction mul)
              (inc mul-call-count)
              mul-call-count)))))))
-
 
 ; set b 79
 ; set c b

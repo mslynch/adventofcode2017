@@ -119,9 +119,9 @@
   "The number of infections after n iterations, using a burst function."
   [input n burst-function]
   ((nth (iterate burst-function {:direction :north
-                        :position [0 0]
-                        :infected (infection-grid-to-set input)
-                        :weakened #{}
-                        :flagged #{}
-                        :infection-count 0})
+                                 :position [0 0]
+                                 :infected (infection-grid-to-set input)
+                                 :weakened #{}
+                                 :flagged #{}
+                                 :infection-count 0})
         n) :infection-count))

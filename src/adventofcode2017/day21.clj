@@ -98,7 +98,7 @@
   [rules pixels]
   (reassemble-matrix
    (map (fn [squares]
-          (map #(rules %) squares))
+          (map rules squares))
         (split-matrix pixels))))
 
 (defn on-after-n-iterations
