@@ -22,6 +22,7 @@
             [adventofcode2017.day20 :refer [closest-to-origin left-after-collisions]]
             [adventofcode2017.day21 :refer [on-after-n-iterations]]
             [adventofcode2017.day22 :refer [count-infections burst burst-evolved]]
+            [adventofcode2017.day23 :refer [run-program calculate-h]]
             [clojure.string :as str]))
 
 (defn day-01 []
@@ -158,8 +159,13 @@
   (let [input (line-seq (clojure.java.io/reader "resources/day22.txt"))]
     (println "Day 22: Sporifica Virus")
     (println (str "part 1: " (count-infections input 10000 burst)))
-    (println (str "part 2: " (count-infections input 10000000 burst-evolved)))
-    ))
+    (println (str "part 2: " (count-infections input 10000000 burst-evolved)))))
+
+(defn day-23 []
+  (let [input (line-seq (clojure.java.io/reader "resources/day23.txt"))]
+    (println "Day 23: Coprocessor Conflagration")
+    ; (println (str "part 1: " (run-program input)))
+    (println (str "part 2: " (calculate-h input)))))
 
 (defn -main
   "Run the solutions!"
@@ -187,5 +193,6 @@
     ; (day-19)
     ; (day-20)
     ; (day-21)
-    (day-22)
+    ; (day-22)
+    (day-23)
     ))
