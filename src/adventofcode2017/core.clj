@@ -23,6 +23,7 @@
             [adventofcode2017.day21 :refer [on-after-n-iterations]]
             [adventofcode2017.day22 :refer [count-infections burst burst-evolved]]
             [adventofcode2017.day23 :refer [run-program calculate-h]]
+            [adventofcode2017.day24 :refer [best-bridge-strength bridge-strength]]
             [clojure.string :as str]))
 
 (defn day-01 []
@@ -164,8 +165,14 @@
 (defn day-23 []
   (let [input (line-seq (clojure.java.io/reader "resources/day23.txt"))]
     (println "Day 23: Coprocessor Conflagration")
-    ; (println (str "part 1: " (run-program input)))
+    (println (str "part 1: " (run-program input)))
     (println (str "part 2: " (calculate-h input)))))
+
+(defn day-24 []
+  (let [input (line-seq (clojure.java.io/reader "resources/day24.txt"))]
+    (println "Day 24: Electromagnetic Moat")
+    (println (str "part 1: " (best-bridge-strength input bridge-strength)))
+    (println (str "part 2: " (best-bridge-strength input count)))))
 
 (defn -main
   "Run the solutions!"
@@ -194,4 +201,5 @@
     ; (day-20)
     ; (day-21)
     ; (day-22)
-    (day-23)))
+    ; (day-23)
+    (day-24)))
