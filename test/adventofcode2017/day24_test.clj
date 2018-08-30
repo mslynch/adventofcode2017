@@ -2,8 +2,8 @@
   (:require [clojure.test :refer :all]
             [adventofcode2017.day24 :refer :all]))
 
-(def components (parse-input
-                 (line-seq (clojure.java.io/reader "resources/day24-test.txt"))))
+(def components
+  (parse-input (line-seq (clojure.java.io/reader "resources/day24-test.txt"))))
 
 ; excluding bridges that leave out viable components
 ; components are flipped to show connections
@@ -18,7 +18,7 @@
 
 (deftest strongest-bridge-test
   (testing "The strongest bridge is found."
-    (is (= (strongest-bridge (all-bridges components))
+    (is (= (best-bridge bridge-strength (all-bridges components))
            [[0 1] [1 10] [10 9]]))))
 
 (deftest bridge-strength-test
