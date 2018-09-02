@@ -24,6 +24,7 @@
             [adventofcode2017.day22 :refer [count-infections burst burst-evolved]]
             [adventofcode2017.day23 :refer [run-program calculate-h]]
             [adventofcode2017.day24 :refer [best-bridge-strength bridge-strength]]
+            [adventofcode2017.day25 :refer [turing-checksum]]
             [clojure.string :as str]))
 
 (defn day-01 []
@@ -174,32 +175,41 @@
     (println (str "part 1: " (best-bridge-strength input bridge-strength)))
     (println (str "part 2: " (best-bridge-strength input count)))))
 
+(defn day-25 []
+
+  (let [input (line-seq (clojure.java.io/reader "resources/day25.txt"))]
+    (println "Day 25: The Halting Problem")
+    (println (str "part 1: " (turing-checksum input)))
+    ; (println (str "part 2: " (best-bridge-strength input count)))
+    ))
+
 (defn -main
   "Run the solutions!"
   [& args]
   (do
     (println "Advent of Code 2017 solutions")
-    ; (day-01)
-    ; (day-02)
-    ; (day-03)
-    ; (day-04)
-    ; (day-05)
-    ; (day-06)
-    ; (day-07)
-    ; (day-08)
-    ; (day-09)
-    ; (day-10)
-    ; (day-11)
-    ; (day-12)
-    ; (day-13)
-    ; (day-14)
-    ; (day-15)
-    ; (day-16)
-    ; (day-17)
-    ; (day-18)
-    ; (day-19)
-    ; (day-20)
-    ; (day-21)
-    ; (day-22)
-    ; (day-23)
-    (day-24)))
+    (day-01)
+    (day-02)
+    (day-03)
+    (day-04)
+    (day-05)
+    (day-06)
+    (day-07)
+    (day-08)
+    (day-09)
+    (day-10)
+    (day-11)
+    (day-12)
+    (day-13)
+    (day-14)
+    (day-15)
+    (day-16)
+    (day-17)
+    (day-18)
+    (day-19)
+    (day-20)
+    (day-21)
+    (day-22)
+    (day-23)
+    (day-24)
+    (day-25)))
