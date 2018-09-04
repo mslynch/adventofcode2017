@@ -4,7 +4,8 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/core.async "0.4.474"]]
+                 [org.clojure/core.async "0.4.474"]
+                 [org.clojure/tools.cli "0.3.7"]]
   :main ^:skip-aot adventofcode2017.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

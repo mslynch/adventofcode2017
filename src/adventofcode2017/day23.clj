@@ -66,10 +66,9 @@
   [input]
   (let [size (count input)
         instructions (parse-input input)]
-    (loop [data {:registers (assoc (reduce #(assoc %1 %2 0)
-                                           {}
-                                           (map char (range (int \a) (inc (int \h)))))
-                                   \a 1)
+    (loop [data {:registers (reduce #(assoc %1 %2 0)
+                                    {}
+                                    (map char (range (int \a) (inc (int \h)))))
                  :register 0}
            mul-call-count 0]
       (if (>= (data :register) size)
