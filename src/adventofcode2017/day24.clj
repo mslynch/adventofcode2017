@@ -30,15 +30,13 @@
   "Recursively calculates all possible bridges."
   [current-bridge components]
   (let [components-by-viability (find-viable-components current-bridge components)]
-    (do
-      (if (empty? (components-by-viability :viable))
-        [current-bridge]
-        (apply concat
-               (map #(all-bridges-helper
-                      (cons % current-bridge)
-                      (disj (set (apply clojure.set/union
-                                        (vals components-by-viability))) %))
-                    (components-by-viability :viable)))))))
+    (if (empty? (components-by-viability :viable))
+      [current-bridge]
+      (mapcat #(all-bridges-helper
+                (cons % current-bridge)
+                (disj (set (apply clojure.set/union
+                                  (vals components-by-viability))) %))
+              (components-by-viability :viable)))))
 
 (defn all-bridges
   "Calculates all possible bridges."

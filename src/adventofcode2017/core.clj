@@ -194,18 +194,20 @@
 
 (defn usage [options-summary]
   "Returns string of usage instructions."
-  (->> ["Usage: adventofcode2017 -d DAY [options]"
-        ""
-        "Options:"
-        options-summary]
-       (str/join \newline)))
+  (str/join
+   \newline
+   ["Usage: adventofcode2017 -d DAY [options]"
+    ""
+    "Options:"
+    options-summary]))
 
 (defn help [options-summary]
   "Returns help summary."
-  (->> ["Runs my solutions to the Advent of Code 2017 problems."
-        ""
-        (usage options-summary)]
-       (str/join \newline)))
+  (str/join
+   \newline
+   ["Runs my solutions to the Advent of Code 2017 problems."
+    ""
+    (usage options-summary)]))
 
 (defn -main
   [& args]
